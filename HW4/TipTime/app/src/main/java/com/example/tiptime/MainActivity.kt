@@ -46,12 +46,39 @@ fun TipTimePreview() { MaterialTheme { TipTimeLayout() } }
 @Composable
 fun TipTimeLayout(modifier: Modifier = Modifier) {
     var amountInput by rememberSaveable { mutableStateOf("") }
-    val tip = calculateTip(amountInput.toDoubleOrNull() ?: 0.0)
-    Column(modifier.padding(40.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
-        Text("Calculate Tip")
-        TextField(value = amountInput, onValueChange = { amountInput = it }, label = { Text("Bill Amount") },
-            singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal))
-        Text("Tip Amount: $tip", fontSize = 24.sp)
+    var tipInput by rememberSaveable { mutableStateOf("") }
+    var roundUp by rememberSaveable { mutableStateOf(false) }
+    val amount = amountInput.toDoubleOrNull() ?: 0.0
+    val percent = tipInput.toDoubleOrNull() ?: 0.0
+    val tip = calculateTip(amount, percent, roundUp)
+    val focusManager = LocalFocusManager.current
+    Column(modifier.verticalScroll(rememberScrollState()).padding(horizontal = 40.dp, vertical = 32.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(stringResource(R.string.calculate_tip), modifier = Modifier.align(Alignment.Start).padding(top = 48.dp))
+        EditNumberField(R.string.bill_amount, Icons.Default.Edit, amountInput, { amountInput = it },
+            KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = ImeAction.Next),
+            KeyboardActions(onNext = { focusManager.moveFocus(FocusDirection.Down) }))
+        EditNumberField(R.string.tip_percentage, Icons.Default.Star, tipInput, { tipInput = it },
+            KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = ImeAction.Done),
+            KeyboardActions(onDone = { focusManager.clearFocus() }))
+        RoundTheTipRow(roundUp, { roundUp = it })
+        Text(stringResource(R.string.tip_amount, tip), style = MaterialTheme.typography.headlineSmall)
+    }
+}
+
+@Composable
+fun EditNumberField(label: Int, icon: ImageVector, value: String, onValueChanged: (String) -> Unit,
+    keyboardOptions: KeyboardOptions, keyboardActions: KeyboardActions, modifier: Modifier = Modifier) {
+    TextField(value = value, onValueChange = onValueChanged, singleLine = true,
+        label = { Text(stringResource(label)) }, leadingIcon = { Icon(icon, null) },
+        keyboardOptions = keyboardOptions, keyboardActions = keyboardActions, modifier = modifier.fillMaxWidth())
+}
+
+@Composable
+fun RoundTheTipRow(roundUp: Boolean, onRoundUpChanged: (Boolean) -> Unit, modifier: Modifier = Modifier) {
+    Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text(stringResource(R.string.round_up_tip), modifier = Modifier.weight(1f))
+        Switch(checked = roundUp, onCheckedChange = onRoundUpChanged)
     }
 }
 
