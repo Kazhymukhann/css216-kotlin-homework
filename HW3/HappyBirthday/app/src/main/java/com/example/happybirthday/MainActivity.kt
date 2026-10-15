@@ -41,7 +41,15 @@ fun HappyBirthdayPreview() { MaterialTheme { HappyBirthdayApp(Modifier.fillMaxSi
 
 @Composable
 fun HappyBirthdayApp(modifier: Modifier = Modifier) {
-    Column(modifier.padding(8.dp), verticalArrangement = Arrangement.Center) {
+    Box(modifier) {
+        Image(painterResource(R.drawable.androidparty), null, Modifier.fillMaxSize(), contentScale = ContentScale.Crop, alpha = 0.5f)
+        BirthdayText(Modifier.fillMaxSize().padding(8.dp))
+    }
+}
+
+@Composable
+fun BirthdayText(modifier: Modifier = Modifier) {
+    Column(modifier, verticalArrangement = Arrangement.Center) {
         Text(stringResource(R.string.message), fontSize = 100.sp, lineHeight = 116.sp, textAlign = TextAlign.Center)
         Text(stringResource(R.string.signature), fontSize = 36.sp, modifier = Modifier.padding(16.dp).align(Alignment.End))
     }
