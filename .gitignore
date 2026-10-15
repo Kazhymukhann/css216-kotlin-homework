@@ -4,3 +4,7 @@ out/
 build/
 .DS_Store
 .toolchain/
+.gradle/
+.kotlin/
+local.properties
+*.apk
