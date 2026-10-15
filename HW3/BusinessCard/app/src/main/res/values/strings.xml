@@ -1,1 +1,8 @@
-<resources><string name="app_name">BusinessCard</string></resources>
+<resources>
+    <string name="app_name">BusinessCard</string>
+    <string name="name">Kazhymukhan</string>
+    <string name="title">Android Development Student</string>
+    <string name="handle">@Kazhymukhann</string>
+    <string name="email">student@example.com</string>
+    <string name="phone">+00 (000) 000 000</string>
+</resources>
