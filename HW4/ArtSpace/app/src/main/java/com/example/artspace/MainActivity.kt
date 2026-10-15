@@ -38,12 +38,24 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
     val title = when (artwork) { 1 -> R.string.title_1; 2 -> R.string.title_2; else -> R.string.title_3 }
     val artist = when (artwork) { 1 -> R.string.artist_1; 2 -> R.string.artist_2; else -> R.string.artist_3 }
     val year = when (artwork) { 1 -> R.string.year_1; 2 -> R.string.year_2; else -> R.string.year_3 }
-    Column(modifier.padding(24.dp), verticalArrangement = Arrangement.spacedBy(24.dp)) {
-        ArtworkWall(image, stringResource(title), Modifier.weight(1f).fillMaxWidth())
-        ArtworkDescription(title, artist, year)
-        DisplayController(
-            onPrevious = { artwork = if (artwork == 1) 3 else artwork - 1 },
-            onNext = { artwork = if (artwork == 3) 1 else artwork + 1 })
+    val previous = { artwork = if (artwork == 1) 3 else artwork - 1 }
+    val next = { artwork = if (artwork == 3) 1 else artwork + 1 }
+    BoxWithConstraints(modifier.padding(24.dp)) {
+        if (maxWidth > maxHeight) {
+            Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.spacedBy(24.dp), verticalAlignment = Alignment.CenterVertically) {
+                ArtworkWall(image, stringResource(title), Modifier.weight(1f).fillMaxHeight())
+                Column(Modifier.weight(1f).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(24.dp)) {
+                    ArtworkDescription(title, artist, year)
+                    DisplayController(previous, next)
+                }
+            }
+        } else {
+            Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(24.dp)) {
+                ArtworkWall(image, stringResource(title), Modifier.weight(1f).fillMaxWidth())
+                ArtworkDescription(title, artist, year)
+                DisplayController(previous, next)
+            }
+        }
     }
 }
 
