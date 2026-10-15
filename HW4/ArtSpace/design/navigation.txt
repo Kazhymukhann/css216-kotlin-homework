@@ -1,0 +1,9 @@
+Next:
+  If the current artwork is the last, show the first.
+  Otherwise, increase the artwork number by one.
+
+Previous:
+  If the current artwork is the first, show the last.
+  Otherwise, decrease the artwork number by one.
+
+Use the current artwork number to choose its image, title, artist and year.

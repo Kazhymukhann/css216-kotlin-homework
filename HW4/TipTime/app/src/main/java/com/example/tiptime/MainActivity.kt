@@ -1,6 +1,7 @@
 package com.example.tiptime
 
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -66,7 +67,7 @@ fun TipTimeLayout(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EditNumberField(label: Int, icon: ImageVector, value: String, onValueChanged: (String) -> Unit,
+fun EditNumberField(@StringRes label: Int, icon: ImageVector, value: String, onValueChanged: (String) -> Unit,
     keyboardOptions: KeyboardOptions, keyboardActions: KeyboardActions, modifier: Modifier = Modifier) {
     TextField(value = value, onValueChange = onValueChanged, singleLine = true,
         label = { Text(stringResource(label)) }, leadingIcon = { Icon(icon, null) },
