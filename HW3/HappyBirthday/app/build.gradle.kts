@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.example.happybirthday"
     compileSdk = 36
+    buildToolsVersion = "36.0.0"
     defaultConfig {
         applicationId = "com.example.happybirthday"
         minSdk = 24

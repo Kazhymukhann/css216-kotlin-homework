@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.example.artspace"
     compileSdk = 36
+    buildToolsVersion = "36.0.0"
     defaultConfig {
         applicationId = "com.example.artspace"
         minSdk = 24

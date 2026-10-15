@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.example.tiptime"
     compileSdk = 36
+    buildToolsVersion = "36.0.0"
     defaultConfig {
         applicationId = "com.example.tiptime"
         minSdk = 24
