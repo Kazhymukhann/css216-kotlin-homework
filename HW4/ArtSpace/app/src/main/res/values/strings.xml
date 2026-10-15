@@ -1,1 +1,14 @@
-<resources><string name="app_name">ArtSpace</string></resources>
+<resources>
+    <string name="app_name">Art Space</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="title_1">Wheat Field with Cypresses</string>
+    <string name="artist_1">Vincent van Gogh</string>
+    <string name="year_1">1889</string>
+    <string name="title_2">Self-Portrait with a Straw Hat (obverse: The Potato Peeler)</string>
+    <string name="artist_2">Vincent van Gogh</string>
+    <string name="year_2">1887</string>
+    <string name="title_3">A Woman Seated beside a Vase of Flowers (Madame Paul Valpinçon?)</string>
+    <string name="artist_3">Edgar Degas</string>
+    <string name="year_3">1865</string>
+</resources>
