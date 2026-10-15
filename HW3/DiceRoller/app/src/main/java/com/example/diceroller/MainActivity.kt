@@ -53,6 +53,6 @@ fun DiceRollerApp(modifier: Modifier = Modifier) {
     Column(modifier, verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(painterResource(imageResource), stringResource(R.string.dice_result, result), Modifier.size(200.dp))
         Spacer(Modifier.height(16.dp))
-        Button(onClick = { result = 1 }) { Text(stringResource(R.string.roll)) }
+        Button(onClick = { result = (1..6).random() }) { Text(stringResource(R.string.roll)) }
     }
 }
