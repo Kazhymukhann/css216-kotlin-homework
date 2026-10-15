@@ -42,8 +42,8 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
         ArtworkWall(image, stringResource(title), Modifier.weight(1f).fillMaxWidth())
         ArtworkDescription(title, artist, year)
         DisplayController(
-            onPrevious = {  },
-            onNext = {  })
+            onPrevious = { artwork = if (artwork == 1) 3 else artwork - 1 },
+            onNext = { artwork = if (artwork == 3) 1 else artwork + 1 })
     }
 }
 
